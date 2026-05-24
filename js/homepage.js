@@ -32,6 +32,10 @@ document.getElementById("sign-out").addEventListener("click", async (e) => {
     window.location.href = "index.html";
 })
 
+document.getElementById("play-game").addEventListener("click", async () => {
+    window.location.href = "/game/game.html";
+})
+
 async function loadLeaderboard() {
     const q = query(
         collection(db, "leaderboard"),

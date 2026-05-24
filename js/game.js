@@ -85,7 +85,6 @@ async function loadQuestion(difficulty) {
     const snapshot = await getDocs(q);
     const docs = snapshot.docs;
 
-    // Pick a random one from all questions at this difficulty
     const randomDoc = docs[Math.floor(Math.random() * docs.length)];
     const data = randomDoc.data();
 
@@ -94,6 +93,7 @@ async function loadQuestion(difficulty) {
         question.addToChoices(new Choice(optionText, optionText === data.answer));
     });
 
+    question.choices.sort(() => Math.random() - 0.5);
     return question;
 }
 
@@ -175,6 +175,7 @@ async function finalAnswer(){
     activeChoiceElements.forEach(choiceElement => {
         choiceElement.classList.add("disabled")
     })
+    score = difficulty_ratings[activeQuestion.difficulty]
     if (choiceElementChosen.classList.contains("isAnswer")) {
         await sleep(4000);
         if (activeQuestion.difficulty < 4){
@@ -185,9 +186,9 @@ async function finalAnswer(){
 
         choiceElementChosen.classList.remove("chosen")
         choiceElementChosen.classList.add("win")
-        score = difficulty_ratings[activeQuestion.difficulty]
+
         if (activeQuestion.difficulty < 4){
-            await sleep(2000);
+            await sleep(1500);
             currentIndex++;
             addQuestion()
         } else {
@@ -206,6 +207,7 @@ async function finalAnswer(){
         choiceElementChosen.classList.remove("chosen")
         choiceElementChosen.classList.add("lose")
         lost()
+
         activeChoiceElements.forEach(choiceElement => {
             if (choiceElement.classList.contains("isAnswer")) {
                 choiceElement.classList.add("win")
@@ -217,16 +219,16 @@ async function finalAnswer(){
 addQuestion()
 
 function lost(){
-    if (activeQuestion.difficulty < 4) score *= 0.5;
-    if (activeQuestion.difficulty < 9) score = 1000
-    if (activeQuestion.difficulty < 14) score = 32000
-    endGame()
+    if (currentIndex <= 4) score = 0;
+    else if (currentIndex <= 9) score = 1000
+    else if (currentIndex <= 14) score = 32000
+    endGame(score)
 }
 
 
 const overlay = document.getElementById("overlay")
 
-async function endGame(){
+async function endGame(score){
     question.innerHTML = `<p>You won ${score.toLocaleString("en-US")}!</p>`
     activeChoiceElements.forEach(choiceElement => {
         choiceElement.classList.add("disabled")
@@ -243,6 +245,6 @@ finalAnswerButton.addEventListener("click", function() {
 })
 
 document.getElementById("endGameButton").addEventListener("click", function(){
-    endGame()
+    endGame(score)
 })
 
