@@ -99,11 +99,11 @@ async function loadQuestion(difficulty) {
 
 function playSound(path, isBGM){
     if (isBGM){
-        bgmAudio.src = `/assets/sounds/${path}.mp3`;
+        bgmAudio.src = `/sounds/${path}.mp3`;
         bgmAudio.play();
     } else {
         let sfxAudio = new Audio();
-        sfxAudio.src = `/assets/sounds/${path}.mp3`;
+        sfxAudio.src = `/sounds/${path}.mp3`;
         sfxAudio.play();
     }
 }
