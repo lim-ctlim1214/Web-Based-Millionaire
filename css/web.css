@@ -1,0 +1,260 @@
+﻿@font-face {
+    src: url('../assets/fonts/Roboto.ttf');
+    font-family: 'Roboto';
+}
+
+@font-face {
+    src: url('../assets/fonts/Inter.ttf');
+    font-family: 'Inter';
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+.app-login, .home{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    min-height: 100vh;
+    background: linear-gradient(180deg, rgba(239, 168, 255, 1) 0%, rgba(114, 4, 179, 1) 25%, rgba(2, 0, 36, 1) 100%);
+    font-family: Inter;
+}
+
+.hidden {
+    display: none;
+}
+
+.home {
+    justify-content: start;
+    background: linear-gradient(180deg, rgb(212, 57, 248) 0%, rgb(0, 0, 0) 25%, rgba(2, 0, 36, 1) 100%);
+    gap: 1rem;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    background-color: white;
+    padding: 2rem;
+    gap: 0.5rem;
+    border-radius: 1rem;
+    text-align: center;
+}
+
+.long-button-web {
+    background-color: black;
+    color: white;
+    text-align: center;
+    border: 2px solid #249bff;
+    border-radius: 1rem;
+}
+
+.long-button-web:hover {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    transition: 0.2s ease background-color, color;
+}
+
+.headings {
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    color: white;
+    margin-top: 2rem;
+    padding: 0.25rem;
+    width: 75%;
+    align-items: center;
+    align-self: center;
+    border-radius: 1rem;
+    border: 2px solid #0000ff;
+}
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    margin-top: 0;
+}
+
+.nav a {
+    text-decoration: none;
+    color: white;
+}
+
+.main-site {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    flex: 1;
+    gap: 1rem;
+    width: 75%;
+}
+
+.active {
+    font-weight: bold;
+}
+
+.welcome-module {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 1rem;
+}
+
+.post {
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    color: white;
+    border: 2px solid pink;
+    padding: 1rem;
+    border-radius: 1rem;
+    text-align: center;
+    line-height: 0;
+}
+
+.post p {
+    margin-top: 0;
+    line-height: 1rem;
+}
+
+.long-button-web.shortened {
+    width: 50%;
+    align-self: center;
+}
+
+.news-module {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    flex: 1;
+    border-radius: 1rem;
+    border: 2px solid gold;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.news, .rankings {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    flex: 1;
+    gap: 0.5rem;
+}
+
+.news-article {
+    display: flex;
+    flex-direction: column;
+    border: 1px gold solid;
+    border-radius: 1rem;
+    padding: 1rem;
+    line-height: 0;
+}
+
+.news-article p {
+    margin: 0 0 0.5rem;
+    line-height: 1rem;
+}
+
+.ranking {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    border: 1px gold solid;
+    border-radius: 1rem;
+    align-items: center;
+    padding: 0.5rem;
+    line-height: 0;
+}
+
+.ranking p {
+    text-align: right;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px white solid;
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+    color: white;
+    padding-left: 1rem;
+}
+.banner {
+    display: flex;
+
+    flex-direction: column;
+    text-align: center;
+    align-self: center;
+    width: 75%;
+    background-color: black;
+    border: 1px solid pink;
+    color: white;
+    border-radius: 1rem;
+    margin-top: 1rem;
+}
+
+.leaderboards {
+    display: flex;
+    flex-direction: column;
+
+    flex: 1;
+    border: 1px solid gold;
+    padding: 1rem;
+    gap: 0.5rem;
+    border-radius: 1rem;
+}
+
+.lb-indicators {
+    display: grid;
+    grid-template-columns: 0.1fr 2fr 1fr;
+    gap: 1rem;
+    color: white;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.lb-rank {
+    display: grid;
+    grid-template-columns: 0.1fr 2fr 1fr;
+    gap: 1rem;
+    color: white;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border: 1px solid gold;
+}
+
+.lb-rank.self {
+    background-color: #e9c4ff;
+    color: black;
+}
+
+.lb-rank.one {
+    background-color: gold;
+    color: black;
+}
+
+.rank-indicator {
+    text-align: center;
+}
+
+
+.score {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    gap: 2rem;
+    width: 100%;
+}
+
+
