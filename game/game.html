@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web-Based Millionaire</title>
+    <link rel="stylesheet" href="../css/game.css">
+</head>
+<body>
+    <div id="overlay" class="overlay">
+        <div class="results">
+            <h1>Game Over!</h1>
+            <p>You got: $<span id="result-score">0</span></p>
+            <a href="../web/home.html">Head back Home</a>
+        </div>
+    </div>
+    <main class="game" id="game-holder">
+        <div class="final-answer-handler">
+            <div class="button-game" id="finalAnswerButton">Final Answer</div>
+            <div class="button-game" id="endGameButton">End Game</div>
+        </div>
+        <article class="choices" id="choices">
+
+        </article>
+        <article class="question" id="question">
+            <p>Please wait for the game to load...</p>
+        </article>
+        <article class="amountToWin" >
+            <h2 id="amountToWin">Loading...</h2>
+        </article>
+    </main>
+</body>
+<script type="module" src="../js/game.js"></script>
+</html>

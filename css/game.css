@@ -1,0 +1,171 @@
+﻿@font-face {
+    src: url('../assets/fonts/Roboto.ttf');
+    font-family: 'Roboto';
+}
+
+@font-face {
+    src: url('../assets/fonts/Inter.ttf');
+    font-family: 'Inter';
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+.game {
+    display: flex;
+    flex-direction: column-reverse;
+    min-height: 100vh;
+    flex: 1;
+    background: linear-gradient(180deg, rgba(239, 168, 255, 1) 0%, rgba(114, 4, 179, 1) 25%, rgba(2, 0, 36, 1) 100%);
+}
+
+.game.secondphase {
+    background: red;
+    transition: 0.3s ease background
+}
+
+.choices {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 2rem;
+}
+
+.choice {
+    display: flex;
+    flex-direction: row;
+    background-color: #002c7f;
+    font-family: Inter, serif;
+    font-size: 1.2rem;
+    padding: 2rem;
+    border: 1px solid silver;
+    border-radius: 15px;
+    justify-content: center;
+    color: white;
+}
+
+.choice:hover {
+    background-color: gold;
+    color: black;
+    cursor: pointer;
+}
+
+.disabled {
+    pointer-events: none;
+}
+
+.choice.win {
+    background-color: #00dc00;
+    color: black;
+}
+
+.choice.lose {
+    background-color: red;
+    color: white;
+}
+
+.choice.chosen {
+    background-color: orange;
+    color: black;
+}
+
+.question {
+    display: flex;
+    flex-direction: row;
+    background-color: black;
+    font-family: Inter, serif;
+    justify-content: center;
+    color: white;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    border-radius: 16px;
+    font-size: 1.25rem;
+    padding: 0.5rem;
+    border: 1px solid #0000ff;
+}
+
+.final-answer-handler {
+    display: flex;
+    flex-direction: row;
+    padding-left: 2rem;
+    gap: 2rem;
+    padding-right: 2rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.button-game {
+    color: white;
+    padding: 0.5rem;
+    font-family: Inter, serif;
+    background-color: black;
+    border: 1px solid silver;
+    cursor: pointer;
+}
+
+.button-game:hover {
+    background-color: gold;
+    color: black;
+}
+
+.button-game.disabled {
+    background-color: greenyellow;
+    color: black;
+}
+
+.amountToWin {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: white;
+    font-family: Inter, serif;
+    background-color: black;
+    border: 1px solid gold;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 1rem;
+    align-self: center;
+    width: 15%;
+    border-radius: 16px;
+}
+
+.overlay {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    inset: 0;
+    min-width: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s ease all;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.overlay.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding: 3rem;
+    font-family: Inter, serif;
+    border-radius: 1rem;
+}
+
+.result-button {
+
+}
