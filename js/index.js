@@ -29,7 +29,7 @@ onAuthStateChanged(auth, (user) => {
         let loginPrompt = document.getElementById("hidden-login-text")
         loginPrompt.innerText = "Logged in as: " + user.displayName
         loginPrompt.classList.remove("hidden")
-        window.location.href = "../web/home.html";
+        window.location.href = "/web/home.html";
     }
 })
 

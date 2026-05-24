@@ -22,7 +22,7 @@ onAuthStateChanged(auth, (user) => {
     if (user) {
         loggedInUser = user;
     } else {
-        window.location.href = "../index.html";
+        window.location.href = "/index.html";
     }
 })
 
@@ -99,11 +99,11 @@ async function loadQuestion(difficulty) {
 
 function playSound(path, isBGM){
     if (isBGM){
-        bgmAudio.src = `../assets/sounds/${path}.mp3`;
+        bgmAudio.src = `/assets/sounds/${path}.mp3`;
         bgmAudio.play();
     } else {
         let sfxAudio = new Audio();
-        sfxAudio.src = `../assets/sounds/${path}.mp3`;
+        sfxAudio.src = `/assets/sounds/${path}.mp3`;
         sfxAudio.play();
     }
 }
