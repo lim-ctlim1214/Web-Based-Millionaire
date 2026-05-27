@@ -200,8 +200,8 @@ body {
     background-color: #000000;
     border-left: 4px solid #002c7f;
     color: white;
-    justify-content: end;
-    gap: 1rem;
+    justify-content: center;
+    gap: 0.6rem;
     align-items: center;
     padding-bottom: 2rem;
 }
@@ -209,7 +209,7 @@ body {
 .money-value {
     display: flex;
     flex-direction: row;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-family: Inter, serif;
     font-weight: bold;
     border: 1px solid gold;
@@ -234,4 +234,122 @@ body {
     width: 50%;
     color: black;
     transition: 0.3s ease width, background-color;
+}
+
+/* Tablets (768px - 1156px) — hide moneyboard */
+@media (max-width: 1156px) {
+
+    /* Hide the moneyboard entirely */
+    .moneyboard {
+        display: none;
+    }
+
+    /* Game takes full width since moneyboard is gone */
+    .game {
+        flex: 1;
+    }
+
+    /* Tighten choices grid */
+    .choices {
+        padding: 1rem;
+        gap: 0.75rem;
+    }
+
+    .choice {
+        padding: 1.25rem;
+        font-size: 1rem;
+    }
+
+    /* Question */
+    .question {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        font-size: 1rem;
+    }
+
+    /* Amount to win wider since moneyboard gone */
+    .amountToWin {
+        width: 30%;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    /* Final answer row */
+    .final-answer-handler {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        gap: 1rem;
+    }
+}
+
+/* Phones */
+@media (max-width: 767px) {
+
+    .game {
+        flex: 1;
+    }
+
+    /* Choices stack to single column */
+    .choices {
+        grid-template-columns: 1fr;
+        padding: 0.75rem;
+        gap: 0.5rem;
+    }
+
+    .choice {
+        padding: 1rem;
+        font-size: 0.95rem;
+        border-radius: 10px;
+    }
+
+    .question {
+        margin-left: 0.75rem;
+        margin-right: 0.75rem;
+        font-size: 0.95rem;
+        border-radius: 10px;
+    }
+
+    .amountToWin {
+        width: 50%;
+        margin-left: 0.75rem;
+        margin-right: 0.75rem;
+    }
+
+    .final-answer-handler {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    .results {
+        padding: 1.5rem;
+        width: 90%;
+    }
+}
+
+/* Tiny phones */
+@media (max-width: 400px) {
+
+    .choice {
+        font-size: 0.85rem;
+        padding: 0.75rem;
+    }
+
+    .question {
+        font-size: 0.85rem;
+    }
+
+    .amountToWin {
+        width: 65%;
+    }
+}
+
+/* Desktop — ensure moneyboard displays correctly above 1156px */
+@media (max-width: 1880px) {
+
+    .moneyboard {
+        display: none;
+    }
+
 }

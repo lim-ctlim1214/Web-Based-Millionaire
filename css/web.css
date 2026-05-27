@@ -257,4 +257,161 @@ body {
     width: 100%;
 }
 
+.post h2{
+    line-height: 1.5rem;
+}
 
+.news-article h2{
+    line-height: 1.5rem;
+}
+
+/* Tablets (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1156px) {
+
+    /* Slightly narrower than desktop */
+    .main-site {
+        width: 90%;
+    }
+
+    .headings {
+        width: 90%;
+    }
+
+    .banner {
+        width: 90%;
+    }
+
+    .long-button-web {
+        line-height: 1rem;
+    }
+
+
+    /* Welcome module tightens ratio */
+    .welcome-module {
+        grid-template-columns: 2fr 1fr;
+    }
+
+    /* News module stacks on portrait tablets */
+    .news-module {
+        grid-template-columns: 1fr;
+    }
+
+    /* Leaderboard slightly tighter */
+    .lb-indicators,
+    .lb-rank {
+        gap: 0.75rem;
+        font-size: 0.9rem;
+    }
+
+    /* Login card */
+    .login {
+        width: 60%;
+    }
+
+    /* Shortened button */
+    .long-button-web.shortened {
+        width: 70%;
+    }
+}
+
+/* Landscape tablets specifically */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    .news-module {
+        grid-template-columns: 2fr 1fr;
+    }
+
+    .main-site {
+        width: 85%;
+    }
+}
+
+@media (max-width: 767px) {
+
+    /* Stack the welcome module to single column */
+    .welcome-module {
+        grid-template-columns: 1fr;
+    }
+
+    /* Stack the news module to single column */
+    .news-module {
+        grid-template-columns: 1fr;
+    }
+
+    /* Full width main site */
+    .main-site {
+        width: 95%;
+    }
+
+    /* Full width headings */
+    .headings {
+        width: 95%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    /* Full width banner */
+    .banner {
+        width: 95%;
+    }
+
+    /* Nav wraps on small screens */
+    .nav {
+        flex-wrap: wrap;
+        padding-left: 0;
+    }
+
+    /* Leaderboard columns — tighten rank column */
+    .lb-indicators,
+    .lb-rank {
+        grid-template-columns: 0.2fr 1.5fr 1fr;
+        gap: 0.5rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        font-size: 0.85rem;
+    }
+
+    /* Score row stacks */
+    .score {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-end;
+    }
+
+    /* Shortened button goes full width */
+    .long-button-web.shortened {
+        width: 100%;
+    }
+
+    /* Login card padding tightens */
+    .login {
+        padding: 1.25rem;
+        width: 90%;
+    }
+
+    /* Ranking grid tightens */
+    .ranking {
+        grid-template-columns: 1fr 1fr;
+    }
+
+
+}
+
+/* Tiny phones */
+@media (max-width: 400px) {
+    .lb-indicators,
+    .lb-rank {
+        grid-template-columns: 0.3fr 1fr 1fr;
+        font-size: 0.75rem;
+    }
+
+    .headings {
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .main-site {
+        width: 100%;
+        padding: 0 0.5rem;
+    }
+}
