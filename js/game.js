@@ -12,6 +12,8 @@ const firebaseConfig = {
     measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
+//TODO: FIX AUDIO FOR $100-500
+//TODO: ADD IN BETWEEN SCENES.
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -50,6 +52,21 @@ const difficulty_ratings = [
     100, 200, 300, 500, 1000, 2000, 4000, 8000, 16000,
     32000, 64000, 125000, 250000, 500000, 1000000
 ]
+
+let diffpanels = []
+
+function setDiffValues(){
+    let idx = 1
+    difficulty_ratings.forEach(diff => {
+        let value = document.createElement("div")
+        value.classList.add("money-value");
+        value.innerHTML = `<p>${idx} - $${diff.toLocaleString("en-US")}</p>`
+        idx++
+        diffpanels.push(value)
+        moneyboard.appendChild(value)
+
+    })
+}
 
 
 const choices = document.getElementById("choices");
@@ -97,7 +114,7 @@ async function loadQuestion(difficulty) {
     return question;
 }
 
-function playSound(path, isBGM){
+async function playSound(path, isBGM, isTemporarySFX, sleepSecs){
     if (isBGM){
         bgmAudio.src = `/sounds/${path}.mp3`;
         bgmAudio.play();
@@ -105,7 +122,12 @@ function playSound(path, isBGM){
         let sfxAudio = new Audio();
         sfxAudio.src = `/sounds/${path}.mp3`;
         sfxAudio.play();
+        if (isTemporarySFX){
+            await sleep(sleepSecs);
+            sfxAudio.pause()
+        }
     }
+
 }
 
 let activeChoiceElements = []
@@ -115,7 +137,16 @@ let activeQuestion
 const gameholder = document.getElementById("game-holder");
 
 function setBackground(){
-    gameholder.classList.add("secondphase")
+    if (currentIndex === 5){
+        gameholder.classList.add("secondphase")
+    } else if (currentIndex === 10){
+        gameholder.classList.remove("secondphase")
+        gameholder.classList.add("thirdphase")
+    } else if (currentIndex === 14){
+        gameholder.classList.remove("thirdphase")
+        gameholder.classList.add("million")
+    }
+
 }
 
 let currentIndex = 0;
@@ -126,15 +157,23 @@ async function addQuestion(){
     choices.querySelectorAll(".choice").forEach(choice => {
         choice.remove()
     })
+    question.innerHTML = `<p>Please wait for the game to load...</p>`
     finalAnswerButton.classList.remove("disabled")
     activeQuestion = await loadQuestion(currentIndex)
 
-    if (activeQuestion.difficulty <= 4){
+    if (activeQuestion.difficulty === 0){
         playSound("bgm/0", true)
-    } else {
+    } else if (activeQuestion.difficulty > 4) {
         playSound("letsplay", false)
         await sleep(5000)
         playSound(`bgm/${activeQuestion.difficulty - 4}`, true)
+        setBackground()
+    }
+
+    diffpanels[currentIndex].classList.add("active")
+    if (currentIndex > 0){
+        diffpanels[currentIndex - 1].classList.remove("active")
+        diffpanels[currentIndex - 1].classList.add("answered")
     }
 
     question.innerHTML = `<p>${activeQuestion.question}</p>`
@@ -166,8 +205,8 @@ const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 async function finalAnswer(){
     finalAnswerButton.classList.add("disabled")
 
-    if (activeQuestion.difficulty <= 5){
-        playSound("finalanswer/0", true)
+    if (activeQuestion.difficulty < 5){
+        playSound("finalanswer/0", false, true, 4000)
     } else {
         playSound(`finalanswer/${activeQuestion.difficulty - 5}`, true)
     }
@@ -179,7 +218,7 @@ async function finalAnswer(){
     if (choiceElementChosen.classList.contains("isAnswer")) {
         await sleep(4000);
         if (activeQuestion.difficulty < 4){
-            playSound("win/5", true)
+            playSound("win/5", false, true, 2000)
         } else {
             playSound(`win/${activeQuestion.difficulty}`, true)
         }
@@ -192,8 +231,8 @@ async function finalAnswer(){
             currentIndex++;
             addQuestion()
         } else {
-            if (currentIndex === 14){
-                endGame()
+            if (activeQuestion.difficulty === 14){
+                endGame(score)
                 return
             }
             await sleep(9000)
@@ -225,19 +264,23 @@ function lost(){
     endGame(score)
 }
 
+const moneyboard = document.getElementById("moneyboard");
+
 
 const overlay = document.getElementById("overlay")
 
 async function endGame(score){
-    question.innerHTML = `<p>You won ${score.toLocaleString("en-US")}!</p>`
+    question.innerHTML = `<p>You won $${score.toLocaleString()}!</p>`
     activeChoiceElements.forEach(choiceElement => {
         choiceElement.classList.add("disabled")
     })
     finalAnswerButton.classList.add("disabled")
+    playSound("win/14", true)
     await saveScore(loggedInUser, score)
     overlay.classList.add("show")
     document.getElementById("result-score").innerText = score.toLocaleString("en-US")
 }
+setDiffValues()
 
 finalAnswerButton.addEventListener("click", function() {
     if (choiceElementChosen == null) return;

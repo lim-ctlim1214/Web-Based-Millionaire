@@ -14,7 +14,7 @@
 
 body {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     margin: 0;
 }
 
@@ -22,13 +22,39 @@ body {
     display: flex;
     flex-direction: column-reverse;
     min-height: 100vh;
-    flex: 1;
+    flex: 3;
+    position: relative;
     background: linear-gradient(180deg, rgba(239, 168, 255, 1) 0%, rgba(114, 4, 179, 1) 25%, rgba(2, 0, 36, 1) 100%);
 }
 
-.game.secondphase {
-    background: red;
-    transition: 0.3s ease background
+.game::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.game.secondphase::before {
+    background: linear-gradient(180deg, rgba(161, 159, 237, 1) 0%, rgba(237, 175, 100, 1) 50%, rgba(255, 191, 0, 1) 100%);
+    opacity: 1;
+}
+
+.game.thirdphase::before {
+    background: linear-gradient(180deg, rgba(255, 191, 0, 1) 0%, rgba(204, 122, 82, 1) 50%, rgba(189, 92, 81, 1) 100%);
+    opacity: 1;
+}
+
+.game.million::before {
+    background: linear-gradient(180deg, rgba(255, 0, 0, 1) 0%, rgba(135, 0, 0, 1) 50%, rgba(13, 0, 0, 1) 100%);
+    opacity: 1;
+}
+
+.game > * {
+    position: relative;
+    z-index: 1;
 }
 
 .choices {
@@ -166,6 +192,46 @@ body {
     border-radius: 1rem;
 }
 
-.result-button {
+.moneyboard {
+    display: flex;
+    flex-direction: column-reverse;
+    flex: 0.6;
+    padding-left: 1rem;
+    background-color: #000000;
+    border-left: 4px solid #002c7f;
+    color: white;
+    justify-content: end;
+    gap: 1rem;
+    align-items: center;
+    padding-bottom: 2rem;
+}
 
+.money-value {
+    display: flex;
+    flex-direction: row;
+    font-size: 1.2rem;
+    font-family: Inter, serif;
+    font-weight: bold;
+    border: 1px solid gold;
+    border-radius: 15px;
+    width: 50%;
+    justify-content: center;
+}
+
+.money-value p {
+    line-height: 0.5rem;
+}
+
+.money-value.active {
+    background-color: #ffe276;
+    width: 60%;
+    color: black;
+    transition: 0.3s ease width, background-color;
+}
+
+.money-value.answered {
+    background-color: gold;
+    width: 50%;
+    color: black;
+    transition: 0.3s ease width, background-color;
 }
