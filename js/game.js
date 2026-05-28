@@ -216,10 +216,11 @@ async function finalAnswer(){
     })
     score = difficulty_ratings[activeQuestion.difficulty]
     if (choiceElementChosen.classList.contains("isAnswer")) {
-        await sleep(4000);
         if (activeQuestion.difficulty < 4){
+            await sleep(2000)
             playSound("win/5", false, true, 2000)
         } else {
+            await sleep(4000);
             playSound(`win/${activeQuestion.difficulty}`, true)
         }
 
@@ -275,7 +276,6 @@ async function endGame(score){
         choiceElement.classList.add("disabled")
     })
     finalAnswerButton.classList.add("disabled")
-    playSound("win/14", true)
     await saveScore(loggedInUser, score)
     overlay.classList.add("show")
     document.getElementById("result-score").innerText = score.toLocaleString("en-US")
@@ -288,6 +288,7 @@ finalAnswerButton.addEventListener("click", function() {
 })
 
 document.getElementById("endGameButton").addEventListener("click", function(){
+    playSound("win/14", true)
     endGame(score)
 })
 

@@ -29,7 +29,7 @@ onAuthStateChanged(auth, (user) => {
 
 document.getElementById("sign-out").addEventListener("click", async (e) => {
     await signOut(auth);
-    window.location.href = "index.html";
+    window.location.href = "/index.html";
 })
 
 document.getElementById("play-game").addEventListener("click", async () => {
